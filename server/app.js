@@ -4,8 +4,12 @@ const cookieParser = require("cookie-parser");
 const cors = require('cors');
 const mongoose = require("mongoose");
 const PORT = 5005;
-const cohorts = require("./cohorts.json");
 const dotenv = require("dotenv");
+const Cohort = require("./models/Cohort.model")
+const Student = require("./models/Student.model")
+const Teacher = require("./models/Teacher.model")
+
+
 
 dotenv.config();
 
@@ -49,7 +53,41 @@ app.get("/docs", (req, res) => {
 });
 
 app.get("/api/cohorts", (req, res) => {
-  res.json(cohorts);
+  Cohort.find({})
+    .then((cohorts) => {
+      console.log(("Retrieved cohorts:", cohorts));
+      res.json(cohorts);
+    })
+    .catch((error) => {
+      console.error("Error while retrieving cohorts ->", error);
+      res.status(500).json({ error: "Failed to retrieve cohorts" });
+    });
+});
+
+app.get("/api/students", (req, res) => {
+  const newObjectId = new mongoose.Types.ObjectId();
+  Student.updateOne({firstName : "Christine"}, {_id : newObjectId})
+  .then((students) => {
+    console.log(("Retrieved students:", students));
+    res.json(students);
+  })
+  .catch((error) => {
+    console.error("Error while retrieving students ->", error);
+    res.status(500).json({ error: "Failed to retrieve students" });
+  });
+});
+
+app.get("/api/teachers", (req, res) => {
+  Teacher.find({})
+    .then((teachers) => {
+      
+      console.log((newObjectId));
+      res.json(teachers);
+    })
+    .catch((error) => {
+      console.error("Error while retrieving teachers ->", error);
+      res.status(500).json({ error: "Failed to retrieve teachers" });
+    });
 });
 
 // START SERVER
