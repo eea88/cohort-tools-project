@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const studentSchema = new Schema({
     background: {type: String, required: true},
-    cohort: {type: Number, required: true},
+    cohort: {type: mongoose.Schema.Types.ObjectId, required: true},
     email: {type: String, required: true},
     firstName: {type: String, required: true},
     image: {type: String, required: true},
