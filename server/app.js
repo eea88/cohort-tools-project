@@ -8,6 +8,8 @@ const dotenv = require("dotenv");
 const cohortRoutes = require("./routes/cohort.routes");
 const studentRoutes = require("./routes/student.routes");
 const teacherRoutes = require("./routes/teacher.routes");
+const authRoutes = require("./routes/auth.routes")
+const userRoutes = require("./routes/user.routes")
 
 dotenv.config();
 
@@ -48,6 +50,8 @@ app.use(cookieParser());
 app.use("/api", cohortRoutes);
 app.use("/api", studentRoutes);
 app.use("/api", teacherRoutes);
+app.use("/auth", authRoutes);
+app.use("/api", userRoutes);
 // ROUTES - https://expressjs.com/en/starter/basic-routing.html
 // Devs Team - Start working on the routes here:
 // ...

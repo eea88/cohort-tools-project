@@ -1,6 +1,5 @@
 const express = require("express");
 const Student = require("../models/Student.model");
-const Cohort = require("../models/Cohort.model")
 
 const router = express.Router();
 
